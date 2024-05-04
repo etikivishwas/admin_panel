@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Sidebar from './components/sidebar/Sidebar'
+import Topbar from './components/topbar/Topbar'
+import './App.css'
+import { BrowserRouter as Router, 
+  Route, 
+  Routes
+}from "react-router-dom"
+import DriverDetails from './pages/DriverDetails/driverDetails.js'
+import Contracts from './pages/contracts/Contracts.js'
+import Transactions from './pages/transactions/Transactions'
+import Reports from './pages/reports/Reports'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+        <Topbar />
+        <div className="container">
+          <Sidebar />
+          <Routes>
+            <Route index element={
+              <DriverDetails />
+            }>
+            </Route>
+            <Route path="/drivers" element={
+              <DriverDetails />
+            }>
+            </Route>
+           
+            <Route path="/contracts" element={
+              <Contracts />
+            }>
+            </Route>
+
+            <Route path="/transactions" element={
+              <Transactions />
+            }>
+            </Route>
+
+            <Route path="/reports" element={
+              <Reports />
+            }>
+            </Route>
+          </Routes>
+        </div>
+    </Router>
   );
 }
 
